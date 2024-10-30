@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Password Validator</h1>
+    <label for="passwordInput">Password:</label>
+    <input type="password" id="passwordInput" placeholder="Enter your password" /><br><br>
+
+    <label for="confirmPasswordInput">Confirm Password:</label>
+    <input type="password" id="confirmPasswordInput" placeholder="Confirm your password" /><br><br>
+
+    <button id="validateButton">Validate Password</button>
+    <div class="result" id="resultMessage"></div>
+
+    <script>
+        document.getElementById('validateButton').addEventListener('click', function() {
+            const password = document.getElementById('passwordInput').value;
+            const confirmPassword = document.getElementById('confirmPasswordInput').value;
+            const resultMessage = document.getElementById('resultMessage');
+
+            // Validate password
+            if (password.length <= 8) {
+                resultMessage.textContent = 'Password must be greater than 8 characters!';
+                resultMessage.style.color = 'red';
+            } else if (password !== confirmPassword) {
+                resultMessage.textContent = 'Passwords do not match!';
+                resultMessage.style.color = 'red';
+            } else {
+                resultMessage.textContent = 'Password is valid!';
+                resultMessage.style.color = 'green';
+            }
+        });
+    </script>
+</body>
+</html>
+
