@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #282c34;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 3em;
+        }
+    </style>
+</head>
+<body onload="startTime()">
+    <div id="txt"></div>
+    <script>
+        function startTime() {
+            const today = new Date();
+            let h = today.getHours();
+            let m = today.getMinutes();
+            let s = today.getSeconds();
+            const ampm = h >= 12 ? 'PM' : 'AM';
+            h = h % 12; 
+            h = h ? h : 12; 
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('txt').innerHTML = h + ":" + m + ":" + s + " " + ampm;
+            setTimeout(startTime, 1000);
+        }
+
+        function checkTime(i) {
+            return (i < 10) ? "0" + i : i;         }
+    </script>
+</body>
+</html>

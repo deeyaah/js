@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TextBox Focus and Blur Example</title>
+    <style>
+        /* Styling the textbox */
+        #myTextBox {
+            width: 300px;
+            height: 30px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <h2>TextBox Focus and Blur Example</h2>
+    
+    <input type="text" id="myTextBox" placeholder="Click to change color" 
+           onfocus="changeColorOnFocus()" onblur="resetColorOnBlur()">
+    
+    <script>
+        function changeColorOnFocus() {
+            
+            var textBox = document.getElementById('myTextBox');
+            textBox.style.color = 'white'; 
+            textBox.style.backgroundColor = 'blue'; 
+        }
+
+        function resetColorOnBlur() {
+            
+            var textBox = document.getElementById('myTextBox');
+            textBox.style.color = 'black'; 
+            textBox.style.backgroundColor = 'white'; 
+        }
+    </script>
+</center>
+</body>
+</html>

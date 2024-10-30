@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email Validator</title>
+</head>
+<body>
+    <center>
+    <h1>Email Validator</h1>
+    <label>Enter your email: </label>
+    <input type="text" id="email"><br><br>
+    <button onclick="validateEmail()">Validate</button>
+
+    <p id="result"></p>
+
+    <script>
+        function validateEmail() {
+            const email = document.getElementById('email').value;
+            const result = document.getElementById('result');
+
+            const atPos = email.indexOf('@');
+            const dotPos = email.lastIndexOf('.');
+
+            if (atPos > 0 && dotPos > atPos + 1 && dotPos < email.length - 2) {
+                result.textContent = "Valid email !";
+                result.style.color = "green";
+            } else {
+                result.textContent = "Invalid email !";
+                result.style.color = "red";
+            }
+        }
+    </script>
+</center>
+</body>
+</html>

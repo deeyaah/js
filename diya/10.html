@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email Validator</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .validation-rules {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        .validation-rules ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .validation-rules li {
+            margin: 5px 0;
+        }
+        .valid {
+            color: #2ecc71;
+        }
+        .invalid {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>✉️ Email Validator</h2>
+        <div class="input-group">
+            <label>Enter Email Address:</label>
+            <input type="text" id="email" placeholder="example@domain.com" 
+                   oninput="validateEmail()">
+        </div>
+        <div class="validation-rules">
+            <strong>Validation Rules:</strong>
+            <ul>
+                <li id="rule1">Must contain @ character</li>
+                <li id="rule2">Must contain . character</li>
+                <li id="rule3">At least one character before @</li>
+                <li id="rule4">At least two characters after .</li>
+            </ul>
+        </div>
+        <div id="result" class="result">
+            Enter an email address to validate
+        </div>
+    </div>
+
+    <script>
+        function validateEmail() {
+            const email = document.getElementById('email').value;
+            const resultDiv = document.getElementById('result');
+            
+            // Rules checking
+            const hasAt = email.includes('@');
+            const hasDot = email.includes('.');
+            const beforeAt = hasAt ? email.split('@')[0].length > 0 : false;
+            const afterDot = hasDot ? email.split('.').pop().length >= 2 : false;
+
+            // Update rule indicators
+            document.getElementById('rule1').className = hasAt ? 'valid' : 'invalid';
+            document.getElementById('rule2').className = hasDot ? 'valid' : 'invalid';
+            document.getElementById('rule3').className = beforeAt ? 'valid' : 'invalid';
+            document.getElementById('rule4').className = afterDot ? 'valid' : 'invalid';
+
+            // Overall validation
+            const isValid = hasAt && hasDot && beforeAt && afterDot;
+
+            resultDiv.className = `result ${isValid ? 'success' : 'error'}`;
+            resultDiv.innerHTML = isValid 
+                ? `✅ "${email}" is a valid email address!`
+                : `❌ "${email}" does not meet all requirements`;
+        }
+    </script>
+</body>
+</html>
